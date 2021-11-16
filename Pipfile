@@ -9,6 +9,7 @@ celery = "*"
 django = "*"
 djangorestframework = "*"
 djoser = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
