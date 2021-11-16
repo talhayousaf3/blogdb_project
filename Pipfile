@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 gunicorn = "==19.9.0"
 celery = "*"
+django = "*"
+djangorestframework = "*"
+djoser = "*"
 
 [dev-packages]
 
