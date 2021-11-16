@@ -1,0 +1,19 @@
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Followers</title>
+</head>
+<body>
+<a href="{% url 'home'%}" > Home</a>
+<p> list of your followers</p>
+<ol type="1">
+{% for followers in user.follower.all %}
+
+<li>{{ followers }}</li>
+{% endfor %}
+</ol>
+</body>
+</html>
+{% endblock content %}

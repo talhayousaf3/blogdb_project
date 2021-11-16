@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<p>you are following  {{user.following.all.count}} authors<a href="check_following"> Check </a></p>
+
+<p>you are followed by {{user.follower.all.count}} authors<a href="check_follower"> Check </a>
+{% endif %}
+<div style="width:100%;height:0px;border:10px solid red;"></div>
+{% for post in object_list %}
+<div class="post-entry">
+<h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+
+    <h2>{{post.author}}</h2>
+    {% if user.is_authenticated %}
+    {% if post.author == user %}
+     <P>you the author of this</P>
+    {% else %}
+    {% if post.author in user.following.all %}
+    <a href="{% url 'follow' post.pk %}">unfollow</a>
+    {% else %}
+    <a href="{% url 'follow' post.pk %}">follow</a>
+    {% endif %}
+    {% endif %}
+    {% else %}
+    <p>please login or signup to follow</p>
+
+    {% endif %}
+
+
+<p>{{ post.body }}</p>
+    <p style="color: red; text-shadow: 2px 0 #888888; letter-spacing:2px; font-weight:bold;">__________________________________________________________________________________________________________________________________</p>
+</div>
+{% endfor %}
+{% endblock content %}

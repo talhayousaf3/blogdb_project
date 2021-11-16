@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Edit post</h1>
+{% if user.is_authenticated %}
+{% if post.author == user %}
+<form action="" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Update" />
+</form>
+{% else %}
+<p>you are not the author of this post.., {{post.author}} is the owner and he can update it </p>
+{% endif %}
+{% endif %}
+{% endblock content %}
