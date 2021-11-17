@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Post
-from blog2_project.tasks import send_email_task
+# from blog2_project.tasks import send_email_task
 
 
 class BlogListView(ListView):
@@ -30,7 +30,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
         obj.author = self.request.user
         obj.save()
         blog_creator = self.request.user
-        send_email_task.delay(blog_creator.id)
+        # send_email_task.delay(blog_creator.id)
         success_url = reverse_lazy('home')
         return HttpResponseRedirect(success_url)
 
