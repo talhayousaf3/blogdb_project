@@ -10,6 +10,8 @@ django = "*"
 djangorestframework = "*"
 djoser = "*"
 psycopg2-binary = "*"
+dj-database-url = "*"
+decouple = "*"
 
 [dev-packages]
 

@@ -161,3 +161,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'talha.yousuf@patsysjournal.com'
 EMAIL_HOST_PASSWORD = 'talha307841'
+
+import dj_database_url
+
+DATABASES = {'default': dj_database_url.config(default='postgres://test_blog_user:password@localhost/test_blog')}

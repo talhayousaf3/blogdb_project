@@ -1,7 +1,7 @@
 amqp==5.0.6
 asgiref==3.4.1
 billiard==3.6.4.0
-celery==5.2.0
+celery~=5.1.2
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.7
@@ -13,11 +13,11 @@ coreapi==2.3.3
 coreschema==0.0.4
 cryptography==35.0.0
 defusedxml==0.7.1
-Django==3.2.9
+Django~=3.2.8
 django-appconf==1.0.5
 django-celery-email==3.0.0
 django-templated-mail==1.1.1
-djangorestframework==3.12.4
+djangorestframework~=3.10.3
 djangorestframework-simplejwt==4.8.0
 djoser==2.1.0
 gunicorn==19.9.0
@@ -45,3 +45,6 @@ uritemplate==4.1.1
 urllib3==1.26.7
 vine==5.0.0
 wcwidth==0.2.5
+
+views~=0.3
+dj-config-url~=0.1.1
