@@ -99,8 +99,8 @@ WSGI_APPLICATION = 'blog2_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blog_final',
-        'USER': 'blog_final_user',
+        'NAME': 'db_blog',
+        'USER': 'db_blog_user',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
@@ -164,4 +164,4 @@ EMAIL_HOST_PASSWORD = 'talha307841'
 
 import dj_database_url
 
-DATABASES = {'default': dj_database_url.config(default='postgres://blog_final_user:password@localhost/blog_final')}
+DATABASES = {'default': dj_database_url.config(default='postgres://db_blog_user:password@localhost/db_blog')}
