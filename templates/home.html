@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
 {% if user.is_authenticated %}
 <p>you are following  {{user.following.all.count}} authors<a href="check_following"> Check </a></p>
 
@@ -10,7 +11,7 @@
 <div class="post-entry">
 <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
 
-    <h2>{{post.author}}</h2>
+    <h2>{{post.author |cut:"@gmail.com"}}</h2>
     {% if user.is_authenticated %}
     {% if post.author == user %}
      <P>you the author of this</P>

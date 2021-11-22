@@ -16,7 +16,7 @@
 </div>
 </header>
     {% if user.is_authenticated %}
-<p>Hi!  {{user.email}}  {{ user.id }}! </p>
+<p>Hi!  {{user.email |cut:"@gmail.com" | upper}}  {{ user.id }}! </p>
 
 
     <p><a href="{% url 'logout' %}">Log out</a></p>

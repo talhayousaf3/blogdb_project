@@ -11,7 +11,7 @@
 <ol type="1">
 {% for followers in user.follower.all %}
 
-<li>{{ followers }}</li>
+<li>{{ followers |cut:"@gmail.com" }}</li>
 {% endfor %}
 </ol>
 </body>

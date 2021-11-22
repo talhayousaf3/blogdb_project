@@ -1,11 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="post-entry">
+
 <h2>{{ post.title }}</h2>
+
+
+    {% if post.cover %}
+
+<img style=" height:60%; width:50%;" class="bookcover" src="{{ post.cover.url }}" alt="{{ post.title }}">
+    {% endif %}
 <p>{{ post.body }}</p>
 </div>
 {% if post.author == user %}
 <a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a>
 <p><a href="{% url 'post_delete' post.pk %}">+ Delete Blog Post</a></p>
 {% endif %}
+<div style="width:100%;height:0px;border:10px solid red;"></div>
+    {% if user.is_authenticated %}
+{% if user in post.likes.all %}
+<a href="{% url 'like' post.pk%}" style="font-size: 40px">Dislike &#128078;</a>
+{% else %}
+<a href="{% url 'like' post.pk%}" style="font-size: 40px">Like &#128077; </a>
+{% endif %}
+{% endif %}
+<!--<p> {{post.likes.all}}</p>-->
+    <p>{{post.likes.all.count}} likes</p>
+    <ol type="1">
+        <p>list of people who liked the blog</p>
+{% for likers in post.likes.all %}
+
+<li>{{ likers |cut:"@gmail.com"}}</li>
+{% endfor %}
+</ol>
+<div style="width:100%;height:0px;border:10px solid red;"></div>
+<h3>Comment Section</h3>
+<a href="{% url 'post_comment' post.pk %}"> +Add a comment </a>
+{% for comments in post.reviews.all%}
+<div style="background-color: #e4b5ab;
+  width: 65%;
+  height: 120px;">
+<p>{{comments.author |cut:"@gmail.com" | upper}} <br>{{comments.comment}}  </p>
+    </div>
+{% endfor %}
 {% endblock content %}

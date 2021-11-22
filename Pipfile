@@ -12,6 +12,7 @@ djoser = "*"
 psycopg2-binary = "*"
 dj-database-url = "*"
 decouple = "*"
+pillow = "*"
 
 [dev-packages]
 

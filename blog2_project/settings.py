@@ -165,3 +165,6 @@ EMAIL_HOST_PASSWORD = 'talha307841'
 import dj_database_url
 
 DATABASES = {'default': dj_database_url.config(default='postgres://db_blog_user:password@localhost/db_blog')}
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

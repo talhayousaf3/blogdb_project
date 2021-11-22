@@ -8,7 +8,7 @@ from .views import (
     BlogDeleteView,
     check_following,
     check_follower,
-    FollowView,
+    FollowView, CommentCreateView, LikeUnlikeView,
 )
 
 urlpatterns = [
@@ -48,6 +48,15 @@ urlpatterns = [
         check_following,
         name='check_following'
     ),
-
+    path(
+        'comment/<int:pk>/',
+        CommentCreateView.as_view(),
+        name='post_comment'
+    ),
+    path(
+        'like/<int:pk>/',
+        LikeUnlikeView.as_view(),
+        name='like'
+    ),
     path('', BlogListView.as_view(), name='home'),
 ]
