@@ -6,13 +6,19 @@ name = "pypi"
 [packages]
 gunicorn = "==19.9.0"
 celery = "*"
-django = "*"
+Django = "*"
 djangorestframework = "*"
 djoser = "*"
 psycopg2-binary = "*"
 dj-database-url = "*"
 decouple = "*"
-pillow = "*"
+Pillow = "*"
+reportlab = "*"
+django-easy-pdf = "*"
+django-utils-six = "*"
+django-wkhtmltopdf = "*"
+patterns = "*"
+django-rest-swagger = "==2.2.0"
 
 [dev-packages]
 

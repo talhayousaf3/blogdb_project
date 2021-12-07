@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
     'rest_framework',
+    'rest_framework_swagger',
+    'wkhtmltopdf',
     'djoser',
     'api.apps.ApiConfig',
     'users',
@@ -81,7 +84,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
 
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 DJOSER = {
     "USER_ID_FIELD": "username",
@@ -140,18 +144,23 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+STATICFILES_DIRS = ((os.path.join(BASE_DIR, 'static')),)
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'blogdb_project/static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+WKHTMLTOPDF_CMD_OPTIONS = {
+    'quiet': False,
+}
+WKHTMLTOPDF_CMD = 'xvfb-run -a wkhtmltopdf'
+
 dependencies = [
     ('ook', '__first__'),
     ('eek', '0002_auto_20151029_1040'),
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
@@ -162,9 +171,11 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'talha.yousuf@patsysjournal.com'
 EMAIL_HOST_PASSWORD = 'talha307841'
 
-import dj_database_url
-
-DATABASES = {'default': dj_database_url.config(default='postgres://db_blog_user:password@localhost/db_blog')}
+DATABASES = {'default':
+    dj_database_url.config(
+        default='postgres://db_blog_user:password@localhost/db_blog'
+    )
+}
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

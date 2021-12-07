@@ -8,7 +8,12 @@ from .views import (
     BlogDeleteView,
     check_following,
     check_follower,
-    FollowView, CommentCreateView, LikeUnlikeView,
+    CommentCreateView,
+    detail_to_pdf,
+    FollowView,
+    LikeUnlikeView,
+    PdfDetail,
+
 )
 
 urlpatterns = [
@@ -58,5 +63,18 @@ urlpatterns = [
         LikeUnlikeView.as_view(),
         name='like'
     ),
+
+    path(
+        'pdf_my/<int:pk>/',
+        detail_to_pdf,
+        name='pdf'
+    ),
+    path(
+        'pdf/<int:pk>/',
+        PdfDetail.as_view(template_name='post_detail.html',
+                          filename='post_pdf.pdf'),
+        name='pdf_new'
+    ),
+
     path('', BlogListView.as_view(), name='home'),
 ]

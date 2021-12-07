@@ -48,3 +48,5 @@ wcwidth==0.2.5
 
 views~=0.3
 dj-config-url~=0.1.1
+django-easy-pdf~=0.1.1
+django-wkhtmltopdf~=3.3.0

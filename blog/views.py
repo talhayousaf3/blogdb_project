@@ -5,7 +5,10 @@ from django.views import View
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from easy_pdf.rendering import render_to_pdf_response
+from wkhtmltopdf.views import PDFTemplateView
 
+from blog2_project.tasks import send_email_task
 from .models import Post, Comment
 
 
@@ -29,7 +32,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
         obj.author = self.request.user
         obj.save()
         blog_creator = self.request.user
-        # send_email_task.delay(blog_creator.id)
+        send_email_task.delay(blog_creator.id)
         success_url = reverse_lazy('home')
         return HttpResponseRedirect(success_url)
 
@@ -86,7 +89,7 @@ class CommentCreateView(CreateView):
     fields = ['comment', ]
 
     def form_valid(self, form):
-        obj = form.save(commit=False)
+        obj = form.save(commit=False)  # this is done to get element before saving it in db.
         obj.author = self.request.user
         obj.post = Post.objects.get(pk=self.kwargs.get('pk'))
         obj.save()
@@ -101,7 +104,6 @@ class LikeUnlikeView(View):
     def get(self, request, pk):
 
         on_post = Post.objects.get(pk=pk)
-        print(on_post)
         liker = self.request.user
         if liker in on_post.likes.all():
             on_post.likes.remove(liker)
@@ -111,3 +113,16 @@ class LikeUnlikeView(View):
         prim = self.kwargs.get('pk')
         success_url = f'/post/{prim}/'
         return HttpResponseRedirect(success_url)
+
+
+def detail_to_pdf(request, pk):
+    template = 'post_detail.html'
+    context = {'post': Post.objects.get(pk=pk)}
+    return render_to_pdf_response(request, template, context)
+
+
+class PdfDetail(PDFTemplateView):
+
+    def get_context_data(self, pk):
+        context = {'post': Post.objects.get(pk=pk)}
+        return context

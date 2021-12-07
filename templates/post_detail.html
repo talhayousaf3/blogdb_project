@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
+<div style="width:100%;height:0px;border:10px solid red;"></div>
 <div class="post-entry">
 
 <h2>{{ post.title }}</h2>
 
 
     {% if post.cover %}
-
-<img style=" height:60%; width:50%;" class="bookcover" src="{{ post.cover.url }}" alt="{{ post.title }}">
+<!--style=" height:60%; width:50%;" class="bookcover"-->
+<img  src="{{ post.cover.url }}" alt="{{ post.title }}">
     {% endif %}
 <p>{{ post.body }}</p>
 </div>
@@ -23,7 +24,11 @@
 <a href="{% url 'like' post.pk%}" style="font-size: 40px">Like &#128077; </a>
 {% endif %}
 {% endif %}
-<!--<p> {{post.likes.all}}</p>-->
+<a href="{% url 'pdf' post.pk%}"><P>Convert To Pdf</P></a>
+
+ <a href="{% url 'pdf_new' pk=post.pk %}"><P>direct download this Post's pdf</P></a>
+
+
     <p>{{post.likes.all.count}} likes</p>
     <ol type="1">
         <p>list of people who liked the blog</p>

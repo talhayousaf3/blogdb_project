@@ -1,0 +1,17 @@
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check likes</title>
+</head>
+<body>
+<a href="{% url 'home'%}"> Home</a>
+<p> list of likers {{ post.lokes.all }}</p>
+<ol type="1">
+{% for author in post.likes.all %}
+<li>{{ author }}</li>
+{% endfor %}
+</ol>
+</body>
+</html>
+{% endblock content %}

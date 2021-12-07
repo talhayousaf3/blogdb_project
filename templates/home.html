@@ -7,7 +7,7 @@
 <p>you are followed by {{user.follower.all.count}} authors<a href="check_follower"> Check </a>
 {% endif %}
 <div style="width:100%;height:0px;border:10px solid red;"></div>
-{% for post in object_list %}
+{% for post in object_list reversed %}
 <div class="post-entry">
 <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
 
@@ -29,6 +29,8 @@
 
 
 <p>{{ post.body }}</p>
+
+
     <p style="color: red; text-shadow: 2px 0 #888888; letter-spacing:2px; font-weight:bold;">__________________________________________________________________________________________________________________________________</p>
 </div>
 {% endfor %}

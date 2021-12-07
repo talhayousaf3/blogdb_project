@@ -11,7 +11,7 @@ class PostAdmin(admin.ModelAdmin):
     inlines = [
         CommentInline,
     ]
-    list_display = ("title", "author", "body")
+    list_display = ("title", "author", "body", )
 
 
 admin.site.register(Post, PostAdmin)

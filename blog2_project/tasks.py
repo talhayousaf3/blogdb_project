@@ -11,8 +11,6 @@ def send_email_task(blog_creator_id):
 
     subject = f'Hi author  {blog_creator}  have posted a blog go check it out'
     message = 'This is a test email sent asynchronously with Celery.'
-    # users = CustomUSer.objects.filter(is_active=True, email_opt_in=True)
-    # reciepient = followers.follower.all
 
     return send_mail(
         subject,
