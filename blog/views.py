@@ -5,8 +5,8 @@ from django.views import View
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from easy_pdf.rendering import render_to_pdf_response
-from wkhtmltopdf.views import PDFTemplateView
+# from easy_pdf.rendering import render_to_pdf_response
+# from wkhtmltopdf.views import PDFTemplateView
 
 from blog2_project.tasks import send_email_task
 from .models import Post, Comment
@@ -115,14 +115,14 @@ class LikeUnlikeView(View):
         return HttpResponseRedirect(success_url)
 
 
-def detail_to_pdf(request, pk):
-    template = 'post_detail.html'
-    context = {'post': Post.objects.get(pk=pk)}
-    return render_to_pdf_response(request, template, context)
+# def detail_to_pdf(request, pk):
+#     template = 'post_detail.html'
+#     context = {'post': Post.objects.get(pk=pk)}
+#     return render_to_pdf_response(request, template, context)
 
 
-class PdfDetail(PDFTemplateView):
-
-    def get_context_data(self, pk):
-        context = {'post': Post.objects.get(pk=pk)}
-        return context
+# class PdfDetail(PDFTemplateView):
+#
+#     def get_context_data(self, pk):
+#         context = {'post': Post.objects.get(pk=pk)}
+#         return context

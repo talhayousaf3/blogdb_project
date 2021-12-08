@@ -1,7 +1,6 @@
-from django.http import JsonResponse
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
-
+from django_filters import rest_framework as filters
 from blog.models import Post
 from users.managers import CustomUserManager
 from users.models import CustomUser
@@ -10,37 +9,14 @@ from .serializers import PostSerializer, UserSerializer
 
 class PostAPIView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
-
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_fields = ('title', 'author', 'reviews',)
     serializer_class = PostSerializer
-    permission_classes = (permissions.IsAuthenticated,)
 
 
 class PostDetailApiView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
-
-# class AddFollower(generics.RetrieveUpdateDestroyAPIView):
-#
-#     def get(self, request, pk):
-#         author = Post.objects.get(pk=pk).author
-#         followers = self.request.user
-#
-#         if author in followers.following.all():
-#             followers.following.remove(author)
-#             author.follower.remove(followers)
-#
-#         else:
-#             followers.following.add(author)
-#             author.follower.add(followers)
-#         return JsonResponse(
-#             {
-#                 'status': status.HTTP_200_OK,
-#                 'data': "",
-#                 'message': "follow" + str(followers.email)
-#             }
-#         )
 
 
 class UserSignUpView(generics.ListCreateAPIView):

@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+
 import os
 from pathlib import Path
 import dj_database_url
@@ -40,8 +41,9 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
     'rest_framework',
-    'rest_framework_swagger',
-    'wkhtmltopdf',
+    # 'rest_framework_swagger',
+    # 'wkhtmltopdf',
+    'django_filters',
     'djoser',
     'api.apps.ApiConfig',
     'users',
@@ -86,7 +88,13 @@ REST_FRAMEWORK = {
 
     ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
 }
+
+
 DJOSER = {
     "USER_ID_FIELD": "username",
     'SERIALIZERS': {
@@ -152,7 +160,7 @@ STATIC_ROOT = 'blogdb_project/static/'
 WKHTMLTOPDF_CMD_OPTIONS = {
     'quiet': False,
 }
-WKHTMLTOPDF_CMD = 'xvfb-run -a wkhtmltopdf'
+# WKHTMLTOPDF_CMD = 'xvfb-run -a wkhtmltopdf'
 
 dependencies = [
     ('ook', '__first__'),

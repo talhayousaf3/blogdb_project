@@ -9,10 +9,10 @@ from .views import (
     check_following,
     check_follower,
     CommentCreateView,
-    detail_to_pdf,
+    # detail_to_pdf,
     FollowView,
     LikeUnlikeView,
-    PdfDetail,
+    # PdfDetail,
 
 )
 
@@ -64,17 +64,17 @@ urlpatterns = [
         name='like'
     ),
 
-    path(
-        'pdf_my/<int:pk>/',
-        detail_to_pdf,
-        name='pdf'
-    ),
-    path(
-        'pdf/<int:pk>/',
-        PdfDetail.as_view(template_name='post_detail.html',
-                          filename='post_pdf.pdf'),
-        name='pdf_new'
-    ),
+    # path(
+    #     'pdf_my/<int:pk>/',
+    #     detail_to_pdf,
+    #     name='pdf'
+    # ),
+    # path(
+    #     'pdf/<int:pk>/',
+    #     PdfDetail.as_view(template_name='post_detail.html',
+    #                       filename='post_pdf.pdf'),
+    #     name='pdf_new'
+    # ),
 
     path('', BlogListView.as_view(), name='home'),
 ]

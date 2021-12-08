@@ -24,9 +24,9 @@
 <a href="{% url 'like' post.pk%}" style="font-size: 40px">Like &#128077; </a>
 {% endif %}
 {% endif %}
-<a href="{% url 'pdf' post.pk%}"><P>Convert To Pdf</P></a>
 
- <a href="{% url 'pdf_new' pk=post.pk %}"><P>direct download this Post's pdf</P></a>
+
+
 
 
     <p>{{post.likes.all.count}} likes</p>
